@@ -1,21 +1,6 @@
-import React from 'react';
-import { getTodaysMovies } from './cinepolis'
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-export default class App extends React.Component {
-
-  componentDidMount() {
-    getTodaysMovies();
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
+import fetchMovies from 'network/fetchMovies';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,3 +10,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default class App extends Component {
+  componentDidMount () {
+    fetchMovies();
+  }
+
+  render () {
+    return (
+      <View style={styles.container}>
+        <Text>Open up App.js to start working on your app!</Text>
+      </View>
+    );
+  }
+}
