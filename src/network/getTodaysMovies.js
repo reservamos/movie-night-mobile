@@ -1,16 +1,14 @@
 const findMovieIndex = (movies, key) => movies.findIndex(movie => movie.key === key);
 
-const extractTimes = (apiMovie) => {
-  const result = [];
-  apiMovie.Formats.forEach((format) => {
-    let formatTimes = `${format.Language}:`;
-    format.Showtimes.forEach((showtime) => {
-      formatTimes += `${showtime.Time},`;
-    });
-    result.push(formatTimes);
-  });
-  return result;
-};
+const extractTimes = apiMovie => apiMovie.Formats.reduce((formatTimes, format) => {
+  const times = [];
+  format.Showtimes.forEach(showtime => times.push(showtime.Time));
+
+  return {
+    ...formatTimes,
+    [format.Language]: times,
+  };
+}, {});
 
 const extractMovies = (apiTheaters) => {
   const movies = [];
@@ -28,6 +26,7 @@ const extractMovies = (apiTheaters) => {
           title: apiMovie.Title,
           originalTitle: apiMovie.OriginalTitle,
           key: apiMovie.Key,
+          actors: apiMovie.Actors,
           theaters: [{
             name: apiTheater.Name,
             times: extractTimes(apiMovie),

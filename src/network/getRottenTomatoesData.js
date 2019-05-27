@@ -17,8 +17,7 @@ export default async function getRottenTomatoesData (movieName) {
     }
 
     return {};
-  } catch (error) {
-    console.log(error);
+  } catch {
     return {};
   }
 }
