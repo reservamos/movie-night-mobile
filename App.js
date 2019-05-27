@@ -1,7 +1,13 @@
 import React from 'react';
+import { getTodaysMovies } from './cinepolis'
 import { StyleSheet, Text, View } from 'react-native';
 
 export default class App extends React.Component {
+
+  componentDidMount() {
+    getTodaysMovies();
+  }
+
   render() {
     return (
       <View style={styles.container}>
