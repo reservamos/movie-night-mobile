@@ -38,10 +38,10 @@ const extractMovies = (apiTheaters) => {
   return movies;
 };
 
-export default async function getTodaysMovies () {
+export default async function getTodaysMovies (cityKey) {
   try {
     const data = {
-      claveCiudad: 'monterrey-cumbres',
+      claveCiudad: cityKey,
       esVIP: false,
     };
 

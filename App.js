@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import fetchMovies from 'network/fetchMovies';
+import { fetchMovies } from 'actions/movies';
+import { Provider } from 'react-redux';
+import store from 'store';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,14 +15,16 @@ const styles = StyleSheet.create({
 
 export default class App extends Component {
   componentDidMount () {
-    fetchMovies();
+    store.dispatch(fetchMovies('monterrey-cumbres'));
   }
 
   render () {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Text>Open up App.js to start working on your app!</Text>
+        </View>
+      </Provider>
     );
   }
 }

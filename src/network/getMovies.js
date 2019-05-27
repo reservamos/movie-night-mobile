@@ -12,12 +12,11 @@ async function buildMovie (movie) {
   return resultMovie;
 }
 
-export default async function fetchMovies () {
-  const fetchedMovies = await getTodaysMovies();
+export default async function getMovies (cityKey) {
+  const fetchedMovies = await getTodaysMovies(cityKey);
   const promises = [];
 
   fetchedMovies.forEach(movie => promises.push(buildMovie(movie)));
 
-  const movies = await Promise.all(promises);
-  return movies;
+  return Promise.all(promises);
 }
