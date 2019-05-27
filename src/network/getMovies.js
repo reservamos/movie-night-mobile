@@ -5,10 +5,9 @@ async function buildMovie (movie) {
   const resultMovie = { ...movie };
   const data = await getRottenTomatoesData(movie.originalTitle);
 
-  if (data.rtClass === 'rotten' || data.rtClass === 'certified_fresh') {
-    resultMovie.rtScore = data.rtScore;
-    resultMovie.rotten = data.rtClass === 'rotten';
-  }
+  resultMovie.score = data.rtScore || 0;
+  resultMovie.rotten = data.rtClass === 'rotten' || false;
+
   return resultMovie;
 }
 

@@ -11,7 +11,6 @@ export default function movies (state = defaultState, action) {
     case SET_LOADING:
       return state.set('isLoading', action.isLoading);
     case SET_MOVIES:
-      console.log(action.movies);
       return state.set('movies', List(action.movies));
     case CLEAR_STATE:
       return defaultState;
