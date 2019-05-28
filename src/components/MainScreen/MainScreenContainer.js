@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchMovies } from 'actions/movies';
+import { fetchMovies, clearState } from 'actions/movies';
 import MainScreen from './MainScreen';
 
 const mapStateToProps = state => ({
@@ -8,5 +8,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchMovies,
+  clearState,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

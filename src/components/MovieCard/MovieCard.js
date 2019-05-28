@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Text, Image, Rating } from 'react-native-elements';
+import { Card, Image, Rating } from 'react-native-elements';
 import { View } from 'react-native';
 
 const propTypes = {
