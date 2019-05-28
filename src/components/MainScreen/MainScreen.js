@@ -10,7 +10,6 @@ const options = [
   { placeName: 'Monterrey Norte', id: 'monterrey-norte' },
   { placeName: 'Monterrey Oriente', id: 'monterrey-oriente' },
   { placeName: 'Monterrey Sur', id: 'monterrey-sur' },
-  { placeName: 'Monterrey Centro', id: 'monterrey-cumbres' },
 ];
 
 export default class MainScreen extends Component {
@@ -41,7 +40,10 @@ export default class MainScreen extends Component {
     if (!movies.length) return <Text>Sin Resultados</Text>;
 
     return movies.map(movie => (
-      <TouchableOpacity onPress={() => navigation.navigate('MovieDetails')} key={movie.key}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('MovieDetails', { key: movie.key })}
+        key={movie.key}
+      >
         <MovieCard
           image={movie.image}
           title={movie.title}
