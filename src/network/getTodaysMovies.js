@@ -59,7 +59,8 @@ export default async function getTodaysMovies (cityKey) {
     });
 
     const fetchedData = await response.json();
-    return extractMovies(fetchedData.d.Cinemas);
+
+    return fetchedData.d ? extractMovies(fetchedData.d.Cinemas) : [];
   } catch (error) {
     console.log(error);
     return [];

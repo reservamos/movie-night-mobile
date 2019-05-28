@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Header } from 'react-native-elements';
 import MovieCard from 'components/MovieCard';
 import DropDown from 'components/DropDown';
@@ -18,6 +18,9 @@ export default class MainScreen extends Component {
     fetchMovies: PropTypes.func.isRequired,
     movies: PropTypes.arrayOf(PropTypes.shape({
     })).isRequired,
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func,
+    }).isRequired,
   }
 
   constructor (props) {
@@ -29,21 +32,22 @@ export default class MainScreen extends Component {
   onSelectPlace (placeId) {
     const { fetchMovies } = this.props;
 
-    fetchMovies(placeId);
+    if (placeId) fetchMovies(placeId);
   }
 
   renderMovieCard () {
-    const { movies } = this.props;
+    const { movies, navigation } = this.props;
 
     if (!movies.length) return <Text>Sin Resultados</Text>;
 
     return movies.map(movie => (
-      <MovieCard
-        image={movie.image}
-        title={movie.title}
-        score={movie.score}
-        key={movie.key}
-      />
+      <TouchableOpacity onPress={() => navigation.navigate('MovieDetails')} key={movie.key}>
+        <MovieCard
+          image={movie.image}
+          title={movie.title}
+          score={movie.score}
+        />
+      </TouchableOpacity>
     ));
   }
 

@@ -48,6 +48,7 @@ export default class DropDown extends Component {
           renderRow={onRenderRow}
           onSelect={this.onSelect}
           renderButtonText={onRenderText}
+          defaultValue="Selecciona una zona"
         />
       </View>
     );
