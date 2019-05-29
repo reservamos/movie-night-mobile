@@ -27,10 +27,10 @@ const extractMovies = (apiTheaters) => {
           originalTitle: apiMovie.OriginalTitle,
           key: apiMovie.Key,
           actors: apiMovie.Actors,
-          rating: apiMovie.Rating,
+          clasification: apiMovie.Rating,
           trailer: apiMovie.Trailer,
           duration: apiMovie.RunTime,
-          gender: apiMovie.Gender,
+          gender: apiMovie.Gender || 'Terror',
           theaters: [{
             name: apiTheater.Name,
             times: extractTimes(apiMovie),
