@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { Header, Button } from 'react-native-elements';
 import MovieCard from 'components/MovieCard';
+import styles from './styles';
 
 export default class MainScreen extends Component {
   static propTypes = {
     fetchMovies: PropTypes.func.isRequired,
-    movies: PropTypes.arrayOf(PropTypes.shape({
-    })).isRequired,
+    movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
     }).isRequired,
-  }
+  };
 
   constructor (props) {
     super(props);
@@ -50,10 +50,25 @@ export default class MainScreen extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <Header centerComponent={{ text: 'Selecciona tu pelicula', style: { color: '#fff' } }} />
+        <Header
+          centerComponent={{
+            text: 'Selecciona tu pelicula',
+            style: { color: '#fff', fontSize: 16 },
+          }}
+        />
         <ScrollView>
           <View>
-            { movies.length ? this.renderMovieCard() : <Button onPress={this.onButtonPressed} title="Buscar Peliculas" />}
+            {movies.length ? (
+              this.renderMovieCard()
+            ) : (
+              <View style={styles.wrapper}>
+                <Button
+                  onPress={this.onButtonPressed}
+                  buttonStyle={styles.buttonStyle}
+                  title="Buscar Peliculas"
+                />
+              </View>
+            )}
           </View>
         </ScrollView>
       </View>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Image, Rating, Badge, Text } from 'react-native-elements';
 import { View } from 'react-native';
+import styles from './styles';
 
 const propTypes = {
   image: PropTypes.string.isRequired,
@@ -17,7 +18,7 @@ const defaultProps = {
 };
 
 function calculateRating (score) {
-  return (score * (5 / 100));
+  return score * (5 / 100);
 }
 
 const MovieCard = ({ image, title, score, clasification, duration, gender }) => {
@@ -25,27 +26,26 @@ const MovieCard = ({ image, title, score, clasification, duration, gender }) => 
 
   return (
     <Card title={title}>
-      <View>
-        <Image source={{ uri: image }} style={{ width: 130, height: 150 }} />
-
-        <Text>Clasificación:</Text>
-        <Badge value={clasification} />
-
-        <Text>Duración:</Text>
-        <Badge value={duration} />
-
-        <Text>Género:</Text>
-        <Badge value={gender} />
-
-        <View>
-          <Rating
-            readonly
-            showRating
-            startingValue={rating}
-            imageSize={20}
-            fractions={1}
-            showReadOnlyText={false}
-          />
+      <View style={styles.wrapper}>
+        <Image source={{ uri: image }} style={styles.imageContainer} />
+        <View style={styles.infoContainer}>
+          <View style={styles.itemInfo}>
+            <Text>Clasificación:</Text>
+            <Badge
+              value={clasification}
+              badgeStyle={styles.badgeStyle}
+              textStyle={styles.badgeText}
+            />
+          </View>
+          <View style={styles.itemInfo}>
+            <Text>Duración:</Text>
+            <Badge value={duration} badgeStyle={styles.badgeStyle} textStyle={styles.badgeText} />
+          </View>
+          <View style={styles.itemInfo}>
+            <Text>Género:</Text>
+            <Badge value={gender} badgeStyle={styles.badgeStyle} textStyle={styles.badgeText} />
+          </View>
+          <Rating startingValue={rating} imageSize={20} fractions={1} showReadOnlyText={false} />
         </View>
       </View>
     </Card>

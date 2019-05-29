@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import { Header, Button } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { Video } from 'expo';
+import styles from './styles';
 
 export default class MovieDetails extends Component {
   static propTypes = {
@@ -12,7 +13,7 @@ export default class MovieDetails extends Component {
     navigation: PropTypes.shape({
       goBack: PropTypes.func,
     }).isRequired,
-  }
+  };
 
   constructor (props) {
     super(props);
@@ -29,9 +30,9 @@ export default class MovieDetails extends Component {
     const { trailer, title } = movie;
 
     return (
-      <View>
+      <SafeAreaView style={{ flex: 1 }}>
         <Header
-          centerComponent={{ text: title, style: { color: '#fff' } }}
+          centerComponent={{ text: title, style: { color: '#fff', fontSize: 16 } }}
           leftComponent={(
             <Button
               icon={{ name: 'arrow-back', color: 'white', size: 25 }}
@@ -39,8 +40,15 @@ export default class MovieDetails extends Component {
             />
           )}
         />
-        <Video source={{ uri: trailer }} style={{ width: '100%', height: 300 }} shouldPlay />
-      </View>
+        <View style={styles.wrapper}>
+          <Video
+            source={{ uri: trailer }}
+            style={{ width: '100%', height: 300 }}
+            resizeMode="cover"
+            shouldPlay
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 }
