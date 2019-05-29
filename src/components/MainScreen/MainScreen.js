@@ -9,6 +9,7 @@ export default class MainScreen extends Component {
   static propTypes = {
     fetchMovies: PropTypes.func.isRequired,
     movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    isLoading: PropTypes.bool.isRequired,
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
     }).isRequired,
@@ -46,7 +47,7 @@ export default class MainScreen extends Component {
   }
 
   render () {
-    const { movies } = this.props;
+    const { movies, isLoading } = this.props;
 
     return (
       <View style={{ flex: 1 }}>
@@ -65,7 +66,7 @@ export default class MainScreen extends Component {
                 <Button
                   onPress={this.onButtonPressed}
                   buttonStyle={styles.buttonStyle}
-                  title="Buscar Peliculas"
+                  title={isLoading ? 'Buscando...' : 'Buscar Peliculas'}
                 />
               </View>
             )}
