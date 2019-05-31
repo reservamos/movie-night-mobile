@@ -45,7 +45,18 @@ const MovieCard = ({ image, title, score, clasification, duration, gender }) => 
             <Text>Género:</Text>
             <Badge value={gender} badgeStyle={styles.badgeStyle} textStyle={styles.badgeText} />
           </View>
-          <Rating startingValue={rating} imageSize={20} fractions={1} showReadOnlyText={false} />
+          {
+            rating > 0
+              ? (
+                <Rating
+                  startingValue={rating}
+                  imageSize={20}
+                  fractions={1}
+                  showReadOnlyText={false}
+                  readonly
+                />
+              ) : null
+          }
         </View>
       </View>
     </Card>
